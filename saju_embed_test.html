@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AI 사주풀이 테스트</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>AI 사주풀이</h2>
+    <input type="date" id="birthDate" placeholder="생년월일" />
+    <select id="calendarType">
+      <option value="양력">양력</option>
+      <option value="음력">음력</option>
+    </select>
+    <input type="time" id="birthTime" placeholder="출생시간" />
+    <input type="text" id="region" placeholder="출생지역" />
+    <button onclick="getSaju()">AI 사주풀이 실행</button>
+    <div id="result">여기에 결과가 표시됩니다.</div>
+  </div>
+
+  <script>
+    function getSaju() {
+      const birth = document.getElementById('birthDate').value;
+      const calendar = document.getElementById('calendarType').value;
+      const time = document.getElementById('birthTime').value;
+      const region = document.getElementById('region').value;
+
+      const prompt = "생년월일: " + birth + ", 양력/음력: " + calendar + ", 시간: " + time + ", 지역: " + region;
+
+      fetch("https://ai-saju-test.onrender.com/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: prompt })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('result').innerText = data.reply || "결과 없음";
+      })
+      .catch(err => {
+        document.getElementById('result').innerText = "❌ 서버 오류: " + err.message;
+      });
+    }
+  </script>
+</body>
+</html>
