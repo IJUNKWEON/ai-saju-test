@@ -1,13 +1,13 @@
 
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # CORS 허용
+CORS(app)
 
 @app.route('/ask', methods=['POST'])
 def ask():
-    # 실제 GPT 호출 없이, 테스트 응답 반환
     return jsonify({
         "reply": """
 [테스트 응답 예시]
@@ -23,4 +23,5 @@ def ask():
     })
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
