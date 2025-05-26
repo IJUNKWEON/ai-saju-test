@@ -21,6 +21,11 @@ def ask():
 8) 전체 인생운: 40대 이후 운세가 크게 상승하며, 후반기로 갈수록 운이 강해집니다.
 """
     })
+from flask import send_file 
+
+@app.route("/")
+def index():
+    return send_file("saju_embed_test.html")
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
