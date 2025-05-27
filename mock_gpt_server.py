@@ -25,7 +25,7 @@ from flask import send_file
 
 @app.route("/")
 def index():
-    return send_file("saju_embed_test.html")
+    return send_file("dosa_fortune_with_daily_tabs.html")
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
