@@ -5,6 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 사주풀이</title>
   <link rel="stylesheet" href="static/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+    nav ul li {
+      margin: 0.5rem 1rem;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .result-box {
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,7 +82,7 @@
     <nav>
       <ul>
         <li><a href="#saju">사주풀이</a></li>
-        <li><a href="#today">오늘/내일/이번달 운세</a></li>
+        <li><a href="#today">오늘/내일/이달 운세</a></li>
         <li><a href="#zodiac">띠별 운세</a></li>
         <li><a href="#star">별자리 운세</a></li>
         <li><a href="#love">연애 사주</a></li>
@@ -22,14 +92,74 @@
   </header>
 
   <main>
-    <section id="saju"><h2>사주 풀이</h2><div class="result"></div></section>
-    <section id="today"><h2>오늘/내일/이번달 운세</h2><div class="daily-results"></div></section>
-    <section id="zodiac"><h2>띠별 운세</h2><select><option>쥐띠</option></select><div class="zodiac-result"></div></section>
-    <section id="star"><h2>별자리 운세</h2><select><option>양자리</option></select><div class="star-result"></div></section>
-    <section id="love"><h2>연애 사주</h2><div class="love-analysis"></div></section>
-    <section id="match"><h2>궁합 분석</h2><div class="match-result"></div></section>
+    <section id="saju">
+      <h2>사주 풀이</h2>
+      <input type="text" placeholder="생년월일시 입력 (예: 1990-01-01 14:30)" />
+      <div class="result-box">사주 풀이 결과 출력 영역</div>
+    </section>
+
+    <section id="today">
+      <h2>오늘 / 내일 / 이달 운세</h2>
+      <button>오늘의 운세</button>
+      <button>내일의 운세</button>
+      <button>이번달 운세</button>
+      <div class="result-box">운세 결과 출력 영역</div>
+    </section>
+
+    <section id="zodiac">
+      <h2>띠별 운세</h2>
+      <select>
+        <option>쥐띠</option>
+        <option>소띠</option>
+        <option>호랑이띠</option>
+        <option>토끼띠</option>
+        <option>용띠</option>
+        <option>뱀띠</option>
+        <option>말띠</option>
+        <option>양띠</option>
+        <option>원숭이띠</option>
+        <option>닭띠</option>
+        <option>개띠</option>
+        <option>돼지띠</option>
+      </select>
+      <div class="result-box">띠별 운세 출력</div>
+    </section>
+
+    <section id="star">
+      <h2>별자리 운세</h2>
+      <select>
+        <option>양자리</option>
+        <option>황소자리</option>
+        <option>쌍둥이자리</option>
+        <option>게자리</option>
+        <option>사자자리</option>
+        <option>처녀자리</option>
+        <option>천칭자리</option>
+        <option>전갈자리</option>
+        <option>사수자리</option>
+        <option>염소자리</option>
+        <option>물병자리</option>
+        <option>물고기자리</option>
+      </select>
+      <div class="result-box">별자리 운세 출력</div>
+    </section>
+
+    <section id="love">
+      <h2>연애 사주</h2>
+      <input type="text" placeholder="생년월일시 입력 (예: 1990-01-01 14:30)" />
+      <div class="result-box">연애 사주 해석 출력</div>
+    </section>
+
+    <section id="match">
+      <h2>궁합 분석</h2>
+      <input type="text" placeholder="본인 생년월일시 입력" />
+      <input type="text" placeholder="상대방 생년월일시 입력" />
+      <div class="result-box">궁합 해석 결과</div>
+    </section>
   </main>
 
-  <footer><p>&copy; 2025 JSK Holdings</p></footer>
+  <footer>
+    <p>&copy; 2025 주식회사 대게 All rights reserved.</p>
+  </footer>
 </body>
 </html>
