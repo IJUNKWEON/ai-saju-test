@@ -160,5 +160,24 @@
   <footer>
     &copy; 2025 도사운세 | All Rights Reserved
   </footer>
+<script>
+document.querySelector('.submit-button').addEventListener('click', async () => {
+  const name = document.querySelector('input[placeholder*="이름"]').value;
+  const birth = document.querySelector('input[type="date"]').value;
+  const time = document.querySelector('input[type="time"]').value;
+  const calendar = document.querySelector('select').value;
+  const region = document.querySelector('input[placeholder*="출생지역"]').value;
+
+  const response = await fetch('https://saju-api-server.onrender.com/saju', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, birth, time, calendar, region })
+  });
+
+  const data = await response.json();
+  document.querySelector('.result-box').innerText = data.result || data.error || "결과를 가져오지 못했습니다.";
+});
+</script>
+
 </body>
 </html>
